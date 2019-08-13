@@ -2,3 +2,5 @@ venv
 build
 dist
 *.pyc
+.pytest_cache
+*.egg-info
