@@ -21,7 +21,8 @@ def find_version(*file_paths):
 
 install_requires = [
     'libvirt-python >= 5.6.0',
-    'prometheus-client >= 0.7.1'
+    'prometheus-client >= 0.7.1',
+    'ConfigArgParse>=0.14.0'
 ]
 
 
