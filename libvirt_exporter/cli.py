@@ -19,6 +19,6 @@ def main():
           default='0.0.0.0')
     options = p.parse_args()
     REGISTRY.register(LibvirtCollector(options.uri))
-    start_http_server(options.port, addr=options.host)
+    start_http_server(int(options.port), addr=options.host)
     while (True):
         time.sleep(10000)
