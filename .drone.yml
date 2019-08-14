@@ -1,0 +1,51 @@
+kind: pipeline
+name: test
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: test
+    image: python:3.7-slim-stretch
+    commands:
+      - apt-get update
+      - apt-get install build-essential libvirt-dev -y
+      - pip install -r requirements.txt
+      - pip install -r requirements-dev.txt
+      - pip install --editable .
+      - flake8 libvirt_exporter
+      - pytest
+---
+kind: pipeline
+name: publish-amd64
+
+platform:
+  os: linux
+  arch: amd64
+
+trigger:
+  event:
+    - tag
+
+steps:
+  - name: build-artifact
+    image: python:3.7-slim-stretch
+    commands:
+      - apt-get update
+      - apt-get install build-essential libvirt-dev -y
+      - pip install -r requirements.txt
+      - pip install -r requirements-build.txt
+      - pyinstaller libvirt_exporter.spec
+      - mv dist/libvirt_exporter dist/libvirt_exporter-amd64
+
+  - name: publish
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_token
+      files: dist/*
+      checksum: sha256
+
+depends_on:
+  - test
