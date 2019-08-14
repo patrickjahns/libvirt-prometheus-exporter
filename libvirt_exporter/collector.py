@@ -121,15 +121,15 @@ class LibvirtCollector(object):
             'Amount of time spent reading from a block device, in seconds.',
             labels=['name', 'id', 'device', 'path'])
         blk_write_request = GaugeMetricFamily(
-            'lvirt_domain_block_stats_read_requests_total',
+            'lvirt_domain_block_stats_write_requests_total',
             'Number of write requests from a block device.',
             labels=['name', 'id', 'device', 'path'])
         blk_write_bytes = GaugeMetricFamily(
-            'lvirt_domain_block_stats_read_bytes_total',
+            'lvirt_domain_block_stats_write_bytes_total',
             'Number of bytes written from a block device, in bytes.',
             labels=['name', 'id', 'device', 'path'])
         blk_write_seconds = GaugeMetricFamily(
-            'lvirt_domain_block_stats_read_seconds_total',
+            'lvirt_domain_block_stats_write_seconds_total',
             'Amount of time spent writing from a block device, in seconds.',
             labels=['name', 'id', 'device', 'path'])
         blk_flush_requests = GaugeMetricFamily(
