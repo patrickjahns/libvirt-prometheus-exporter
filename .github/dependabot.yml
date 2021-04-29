@@ -1,0 +1,30 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: prometheus-client
+    versions:
+    - 0.10.0
+    - 0.9.0
+  - dependency-name: flake8
+    versions:
+    - 3.8.4
+    - 3.9.0
+  - dependency-name: libvirt-python
+    versions:
+    - 7.0.0
+    - 7.1.0
+  - dependency-name: pytest
+    versions:
+    - 6.2.2
+  - dependency-name: pyinstaller
+    versions:
+    - "4.2"
+  - dependency-name: configargparse
+    versions:
+    - 1.2.3
